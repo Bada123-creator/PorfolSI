@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio SI - MIAGE Semestre 5</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        nav {
+            background-color: var(--dark-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav li {
+            margin: 0;
+        }
+
+        nav a {
+            display: block;
+            color: white;
+            text-decoration: none;
+            padding: 1rem 1.5rem;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            background-color: var(--secondary-color);
+        }
+
+        section {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section:nth-child(even) {
+            background-color: white;
+        }
+
+        h2 {
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--secondary-color);
+            text-align: center;
+        }
+
+        h3 {
+            color: var(--dark-color);
+            margin: 1.5rem 0 1rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .work-list {
+            list-style: none;
+        }
+
+        .work-list li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .work-list li:before {
+            content: "•";
+            color: var(--secondary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            margin-top: 0.5rem;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .btn-small {
+            padding: 0.4rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        .file-badge {
+            display: inline-block;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 0.3rem 0.6rem;
+            margin: 0.2rem;
+            font-size: 0.85rem;
+            color: #495057;
+        }
+        
+        .file-badge.pdf { border-left: 3px solid #e74c3c; }
+        .file-badge.img { border-left: 3px solid #3498db; }
+        .file-badge.zip { border-left: 3px solid #27ae60; }
+        .file-badge.pptx { border-left: 3px solid #e67e22; }
+        .file-badge.docx { border-left: 3px solid #2e86c1; }
+
+        .part-section {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 6px;
+            margin: 1rem 0;
+            border-left: 3px solid var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav a {
+                text-align: center;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Portfolio SI - MIAGE S5</h1>
+        <p>Introduction aux Systèmes d'Information - Semestre 5</p>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#travaux">Travaux</a></li>
+            <li><a href="#notes">Notes de cours</a></li>
+            <li><a href="#documents">Documents SI</a></li>
+            <li><a href="#certifications">Certifications</a></li>
+            <li><a href="#projet">Projet final</a></li>
+            <li><a href="#soutenance">Soutenance</a></li>
+            <li><a href="#ressources">Ressources</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="accueil">
+            <h2>Accueil</h2>
+            <div class="card">
+                <h3>À propos de ce portfolio</h3>
+                <p>Ce portfolio numérique a été créé dans le cadre du module "Introduction aux systèmes d'information" du Semestre 5 du parcours MIAGE.</p>
+                <p>Il centralise l'ensemble des travaux réalisés durant ce module et démontre l'acquisition des compétences visées.</p>
+                <p><strong>Modalités d'évaluation :</strong> Contrôle continu (50%) + Examen de 2h (50%)</p>
+            </div>
+        </section>
+
+        <!-- Section Travaux demandés MODIFIÉE -->
+        <section id="travaux">
+            <h2>Travaux dirigés</h2>
+            <p>Cette section contient tous les travaux réalisés en TD, organisés par séance.</p>
+            
+            <div class="grid">
+                <!-- TD 1 -->
+                <div class="card">
+                    <h3>TD 1 : Introduction aux SI & PGI</h3>
+                    <p><strong>Date :</strong> 15/10/2024</p>
+                    
+                    <div class="part-section">
+                        <h4>Partie 1 : Introduction aux SI</h4>
+                        <div class="file-links">
+                            <span class="file-badge pdf">PDF</span>
+                        </div>
+                        <a href="documents/travaux-td/td1/partie1-introduction-si.pdf" class="btn btn-small" target="_blank">📄 Introduction SI</a>
+                    </div>
+                    
+                    <div class="part-section">
+                        <h4>Partie 2 : TD PGI</h4>
+                        <div class="file-links">
+                            <span class="file-badge pdf">PDF</span>
+                        </div>
+                        <a href="documents/travaux-td/td1/partie2-td-pgi.pdf" class="btn btn-small" target="_blank">📊 TD PGI</a>
+                    </div>
+                </div>
+                
+                <!-- TD 2 -->
+                <div class="card">
+                    <h3>TD 2 : Étude de cas - Supermarché</h3>
+                    <p><strong>Date :</strong> 05/11/2024</p>
+                    
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                        <span class="file-badge docx">DOCX</span>
+                    </div>
+                    
+                    <ul class="work-list">
+                        <li>Analyse des processus</li>
+                        <li>Modélisation des flux</li>
+                        <li>Recommandations SI</li>
+                    </ul>
+                    
+                    <a href="documents/travaux-td/td2/etude-cas-supermarche.pdf" class="btn" target="_blank">📋 Étude de cas complète</a>
+                    <a href="documents/travaux-td/td2/analyse-processus.docx" class="btn btn-small" target="_blank">📊 Analyse processus</a>
+                </div>
+                
+                <!-- TD 3 -->
+                <div class="card">
+                    <h3>TD 3 : TP Odoo</h3>
+                    <p><strong>Date :</strong> 19/11/2024</p>
+                    
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                        <span class="file-badge zip">ZIP</span>
+                    </div>
+                    
+                    <ul class="work-list">
+                        <li>Configuration Odoo</li>
+                        <li>Gestion des modules</li>
+                        <li>Personnalisation</li>
+                        <li>Rapport d'installation</li>
+                    </ul>
+                    
+                    <a href="documents/travaux-td/td3/tp-odoo-rapport.pdf" class="btn" target="_blank">📄 Rapport TP Odoo</a>
+                    <a href="documents/travaux-td/td3/configurations-odoo.zip" class="btn btn-small" target="_blank">📦 Fichiers config</a>
+                </div>
+                
+                <!-- TD 4 -->
+                <div class="card">
+                    <h3>TD 4 : Modélisation des processus</h3>
+                    <p><strong>Date :</strong> 03/12/2024</p>
+                    
+                    <div class="part-section">
+                        <h4>Diagramme des événements résultats</h4>
+                        <div class="file-links">
+                            <span class="file-badge pdf">PDF</span>
+                            <span class="file-badge img">PNG</span>
+                        </div>
+                        <a href="documents/travaux-td/td4/diagramme-evenements.pdf" class="btn btn-small" target="_blank">📈 Diagramme événements</a>
+                    </div>
+                    
+                    <div class="part-section">
+                        <h4>Diagramme de flux</h4>
+                        <div class="file-links">
+                            <span class="file-badge pdf">PDF</span>
+                            <span class="file-badge img">PNG</span>
+                        </div>
+                        <a href="documents/travaux-td/td4/diagramme-flux.pdf" class="btn btn-small" target="_blank">📊 Diagramme de flux</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Notes de cours -->
+        <section id="notes">
+            <h2>Notes de cours individuelles</h2>
+            <p>Mes notes personnelles structurées et organisées pour chaque séance de cours.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Cours 1 : Fondements des SI</h3>
+                    <p><strong>Date :</strong> 10/09/2024</p>
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                    </div>
+                    <a href="documents/notes-cours/cours1-fondements.pdf" class="btn" target="_blank">📖 Notes du cours 1</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Cours 2 : Architecture des SI</h3>
+                    <p><strong>Date :</strong> 24/09/2024</p>
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                    </div>
+                    <a href="documents/notes-cours/cours2-architecture.pdf" class="btn" target="_blank">📖 Notes du cours 2</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Cours 3 : PGI et ERP</h3>
+                    <p><strong>Date :</strong> 08/10/2024</p>
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                    </div>
+                    <a href="documents/notes-cours/cours3-pgi-erp.pdf" class="btn" target="_blank">📖 Notes du cours 3</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Documents d'un SI -->
+        <section id="documents">
+            <h2>Documents d'un système d'information</h2>
+            <p>Documents identifiés, rédigés et organisés liés à un système d'information.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Cahier des charges SI</h3>
+                    <p>Spécifications fonctionnelles et techniques d'un SI.</p>
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                    </div>
+                    <a href="documents/documents-si/cahier-charges.pdf" class="btn" target="_blank">📄 Télécharger</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Manuel utilisateur Odoo</h3>
+                    <p>Guide d'utilisation de la solution Odoo.</p>
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                    </div>
+                    <a href="documents/documents-si/manuel-odoo.pdf" class="btn" target="_blank">📄 Télécharger</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Procédures de sécurité</h3>
+                    <p>Documentation des procédures de sécurisation du SI.</p>
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                    </div>
+                    <a href="documents/documents-si/procedures-securite.pdf" class="btn" target="_blank">📄 Télécharger</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Certifications -->
+        <section id="certifications">
+            <h2>Certifications</h2>
+            <p>Attestations et certifications obtenues dans le domaine des systèmes d'information.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Certification SQL</h3>
+                    <p><strong>Date d'obtention :</strong> 15/10/2024</p>
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                    </div>
+                    <a href="documents/certifications/certificat-sql.pdf" class="btn" target="_blank">🏅 Voir le certificat</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Odoo Fundamentals</h3>
+                    <p><strong>Date d'obtention :</strong> 05/12/2024</p>
+                    <div class="file-links">
+                        <span class="file-badge img">PNG</span>
+                    </div>
+                    <a href="documents/certifications/odoo-fundamentals.png" class="btn" target="_blank">🏅 Voir l'attestation</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Modélisation de processus</h3>
+                    <p><strong>Date d'obtention :</strong> 20/11/2024</p>
+                    <div class="file-links">
+                        <span class="file-badge pdf">PDF</span>
+                    </div>
+                    <a href="documents/certifications/modelisation-processus.pdf" class="btn" target="_blank">🏅 Voir la certification</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Projet final -->
+        <section id="projet">
+            <h2>Projet final</h2>
+            <div class="card">
+                <h3>Conception d'un SI pour petite entreprise</h3>
+                <p>Ce projet intègre l'ensemble des compétences acquises durant le module.</p>
+                <p><strong>Date de rendu :</strong> 15/12/2024</p>
+                
+                <div class="file-links">
+                    <span class="file-badge pdf">PDF</span>
+                    <span class="file-badge pptx">PPTX</span>
+                    <span class="file-badge zip">ZIP</span>
+                </div>
+                
+                <a href="documents/projet-final/dossier-complet.pdf" class="btn" target="_blank">📘 Dossier complet</a>
+                <a href="documents/projet-final/presentation.pptx" class="btn" target="_blank">📊 Présentation</a>
+                <a href="documents/projet-final/maquettes.zip" class="btn" target="_blank">🎨 Maquettes</a>
+            </div>
+        </section>
+
+        <!-- Section Soutenance -->
+        <section id="soutenance">
+            <h2>Diaporama pour la soutenance</h2>
+            <div class="card">
+                <h3>Présentation du portfolio</h3>
+                <p>Support visuel pour la présentation orale du portfolio et des travaux réalisés.</p>
+                
+                <div class="file-links">
+                    <span class="file-badge pptx">PPTX</span>
+                    <span class="file-badge pdf">PDF</span>
+                </div>
+                
+                <a href="documents/soutenance/diaporama-soutenance.pptx" class="btn" target="_blank">📽️ Diaporama PowerPoint</a>
+                <a href="documents/soutenance/diaporama-soutenance.pdf" class="btn" target="_blank">📄 Version PDF</a>
+            </div>
+        </section>
+
+        <!-- Section Ressources -->
+        <section id="ressources">
+            <h2>Autres ressources</h2>
+            <p>Ressources complémentaires pertinentes pour approfondir les connaissances en systèmes d'information.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>Veille technologique</h3>
+                    <p>Articles, blogs et sites de référence sur l'actualité des SI.</p>
+                    <a href="documents/ressources/veille-technologique.pdf" class="btn" target="_blank">📚 Accéder aux ressources</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Outils et logiciels</h3>
+                    <p>Présentation des outils utilisés durant la formation.</p>
+                    <a href="documents/ressources/outils-utilises.pdf" class="btn" target="_blank">🛠️ Voir la liste</a>
+                </div>
+                
+                <div class="card">
+                    <h3>Bibliographie</h3>
+                    <p>Ouvrages de référence et lectures recommandées.</p>
+                    <a href="documents/ressources/bibliographie.pdf" class="btn" target="_blank">📖 Consulter</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Portfolio réalisé dans le cadre du module "Introduction aux systèmes d'information" - MIAGE Semestre 5</p>
+        <p>Hébergé sur GitHub - Dernière mise à jour : <span id="date-maj"></span></p>
+        <p>📁 <a href="https://github.com/votre-username/votre-repo" style="color: white;">Accéder au repository GitHub</a></p>
+    </footer>
+
+    <script>
+        document.getElementById('date-maj').textContent = new Date().toLocaleDateString('fr-FR');
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            cards.forEach(card => {
+                card.style.opacity = 0;
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
